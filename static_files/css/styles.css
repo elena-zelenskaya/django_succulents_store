@@ -1,0 +1,289 @@
+* {
+	vertical-align: baseline;
+	font-weight: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	color: inherit;
+	font-size: 100%;
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+}
+
+img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.navbar-light .navbar-nav .nav-link,
+a {
+	color: #214e34;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+a:hover,
+.left_plank a:hover {
+	color: #f46036;
+}
+
+.navbar .nav-item a {
+	font-size: 1rem;
+}
+
+.navbar-logo {
+	width: 100px;
+}
+
+.navbar a.navbar-brand {
+	font-size: 1.6rem;
+}
+
+form.form-inline {
+	width: 60%;
+	border-radius: 10px;
+	position: relative;
+}
+
+.form-control {
+	font-size: 0.8rem;
+}
+
+.fa-search {
+	position: absolute;
+	right: 15px;
+	bottom: 11px;
+}
+
+.logo_brand {
+	flex-grow: 3;
+}
+
+.mini_nav {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+}
+
+.navbar:first-child {
+	flex-direction: column;
+}
+
+.mini_nav a {
+	font-size: 0.9rem;
+}
+
+.navbar-toggler {
+	margin: 0 auto;
+}
+
+.jumbotron {
+	border-top: 4px solid black;
+	padding: 16px;
+	margin-bottom: 0;
+	background-color: white;
+}
+
+.jumbotron h1 {
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.jumbotron img {
+	height: 100%;
+}
+
+.jumbotron .row .col-md-8 .row {
+	margin-right: 1px;
+}
+
+.display-4 {
+	font-size: 1em;
+	font-weight: 300;
+}
+
+.left_plank,
+.custom_btn {
+	color: white;
+	background-color: #00d1b2;
+	font-size: 1.2rem;
+	font-weight: 600;
+	text-align: center;
+}
+
+.left_plank a {
+	color: white;
+}
+
+.right_plank {
+	margin-top: 15px;
+}
+
+.custom_btn {
+	padding: 15px;
+	margin-top: 15px;
+}
+
+.ui-widget-header {
+	color: white;
+	background-color: #00d1b2;
+	font-size: 20px;
+}
+
+.ui-dialog {
+	margin-top: 20px;
+}
+
+#dialog p {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+main .row {
+	background-color: #aae8d8;
+	padding: 16px 0;
+}
+
+main div p {
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.no-close button.ui-widget {
+	color: white;
+	background-color: #00d1b2;
+	font-weight: 700;
+	font-size: 18px;
+	display: block;
+	margin: 0 auto;
+}
+
+.no-close .ui-dialog-titlebar-close {
+	display: none;
+}
+
+.no-close button.ui-widget:hover, #cookie_modal button:hover {
+	color: #f46036;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+	float: none;
+}
+
+#cookie_modal {
+	position: sticky;
+	bottom: 0;
+}
+
+#cookie_modal .modal-body {
+	border: 3px solid black;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#cookie_modal .modal-content a {
+	text-decoration: underline;
+}
+#cookie_modal .modal-content p {
+	margin: 0 1rem;
+}
+
+#cookie_modal button {
+	color: white;
+	background-color: #00d1b2;
+	font-weight: 700;
+	font-size: 18px;
+}
+
+@media only screen and (max-width: 575.98px) {
+	.col-xs-6 {
+		flex: 0 0 50%;
+		max-width: 50%;
+	}
+
+	.row .col-md-8 .row {
+		margin-right: 0;
+	}
+
+	.jumbotron .row .col-md-8 {
+		padding-right: 0;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.navbar a.navbar-brand {
+		font-size: 2.8rem;
+	}
+
+	.jumbotron h1 {
+		font-size: 1.5rem;
+	}
+
+	.mini_nav a {
+		font-size: 1rem;
+	}
+
+	.right_plank {
+		margin-top: 0;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.navbar a.navbar-brand {
+		font-size: 2.4rem;
+	}
+
+	.jumbotron h1 {
+		font-size: 2rem;
+	}
+
+	.form-control {
+		font-size: 1rem;
+	}
+
+	.mini_nav a {
+		font-size: 1.2rem;
+	}
+
+	.navbar-logo {
+		width: 60px;
+	}
+
+	.navbar:first-child {
+		flex-direction: row;
+	}
+
+	.mini_nav {
+		width: auto;
+		flex-grow: 7;
+		justify-content: space-between;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.navbar a.navbar-brand {
+		font-size: 2.8rem;
+	}
+
+	.navbar .nav-item a {
+		font-size: 1.2rem;
+	}
+
+	.jumbotron h1 {
+		font-size: 2.5rem;
+	}
+
+	.display-4 {
+		font-size: 1.2em;
+		font-weight: 400;
+	}
+
+	.custom_btn,
+	.left_plank {
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+}

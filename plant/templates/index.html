@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>EasyBay Succulents</title>
+
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+			integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+			integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+			integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+			crossorigin="anonymous"
+		></script>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'all_styles/styles.css' %}" />
+		<script src="{% static 'all_js/scripts.js' %}"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-light justify-content-between">
+				<div class="logo_brand">
+					{% load static %}
+					<img
+						class="navbar-logo"
+						src="{% static 'all_images/succulent_logo.png' %}"
+						alt="succulent logo"
+					/>
+					<a class="navbar-brand" href="#">EasyBay</a>
+				</div>
+
+				<div class="mini_nav">
+					<form class="form-inline mt-1">
+						<input
+							class="form-control w-100"
+							type="search"
+							placeholder="Search for anything"
+							aria-label="Search"
+						/>
+						<a href="#"
+							><i class="fa fa-search" aria-hidden="true"></i
+						></a>
+					</form>
+
+					<div>
+						<a href="#">Sign In</a>
+						<a id="shopping_cart" href=""
+							><i
+								class="fa fa-2x fa-shopping-cart"
+								aria-hidden="true"
+							></i
+						></a>
+					</div>
+
+					<div id="dialog" title="Alert"></div>
+				</div>
+			</nav>
+			<nav class="navbar navbar-expand-md navbar-light">
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div
+					class="collapse navbar-collapse"
+					id="navbarSupportedContent"
+				>
+					<ul
+						class="navbar-nav mr-auto justify-content-between w-100"
+					>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Aeonium</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Andormischus</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Agave</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Aloe</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Anacampseros</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Aristaloe</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">More...</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<div class="jumbotron">
+				<h1 class="mb-4">
+					Your Source for Serious Succulent Specialties
+				</h1>
+				<div class="row">
+					<div class="col-md-8 col-sm-7">
+						<div class="row h-100">
+							<div
+								class="col-md-4 col-sm-6 p-3 mt-0 left_plank d-flex flex-column justify-content-center"
+							>
+								<h2 class="display-4">
+									Discover surprising succulents one pot or
+									rack at a time!
+								</h2>
+								<a class="pt-3" href="#"
+									>Discover&nbsp;&rarr;</a
+								>
+							</div>
+							<div class="col-md-8 col-sm-6 p-0">
+								{% load static %}
+								<img
+									class="succulents"
+									src="{% static 'all_images/succulents.jpg' %}"
+									hover-src="{% static 'all_images/succulents_replace.jpg' %}"
+									alt="Succulents"
+								/>
+							</div>
+						</div>
+					</div>
+					<div
+						class="col-md-4 col-sm-5 d-flex flex-column justify-content-between right_plank px-0"
+					>
+					{% load static %}
+						<img src="{% static 'all_images/soothing_aloe.jpg' %}" alt="Aloe" />
+						<a class="custom_btn" role="button" href="#"
+							>Soothing Aloe&nbsp;&rarr;</a
+						>
+					</div>
+				</div>
+			</div>
+			<main>
+				<div class="row mt-3 mx-0 pb-0">
+				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/aeonium.jpg' %}" alt="Aeonium" />
+							<p>Aeonium</p>
+						</a>
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/agave.jpg' %}" alt="Agave" />
+							<p>Agave</p>
+						</a>
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/cactus.jpg' %}" alt="Cactus" />
+							<p>Cactus</p>
+						</a>
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/echeveria.jpg' %}" alt="Echeveria" />
+							<p>Echeveria</p>
+						</a>
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/sedum.jpg' %}" alt="Sedum" />
+							<p>Sedum</p>
+						</a>
+					</div>
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="#">
+							{% load static %}
+							<img src="{% static 'all_images/sempervivum.jpg' %}" alt="Sempervivum" />
+							<p>Sempervivum</p>
+						</a>
+					</div>			
+				</div>
+			</main>
+
+			<!--Cookie Modal -->
+			<div
+				class="modal fade"
+				id="cookie_modal"
+				tabindex="-1"
+				data-backdrop="static"
+				aria-labelledby="exampleModalLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog modal-xl">
+					<div class="modal-content">
+						<div class="modal-body">
+							<i
+								class="fa fa-exclamation-triangle fa-2x"
+								aria-hidden="true"
+							></i>
+							<p>
+								This site makes use of third-party cookies, by
+								clicking "I accept" you agree to the terms
+								outlined in our <a href="#">cookie policy</a>.
+							</p>
+							<button
+								type="button"
+								class="btn"
+								data-dismiss="modal"
+							>
+								I&nbsp;Accept
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
