@@ -5,7 +5,7 @@ $(function () {
 		$(this).attr("hover-src", imageSrc);
 	}
 	$(".succulents").hover(changeImage, changeImage);
-	$("#cookie_modal").modal("show");
+	// $("#cookie_modal").modal("show");
 	$("#dialog")
 		.dialog({
 			resizable: false,
