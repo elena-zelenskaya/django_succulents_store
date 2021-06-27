@@ -1,0 +1,37 @@
+<nav class="navbar navbar-light justify-content-between">
+	<div class="logo_brand">
+		{% load static %}
+		<img
+			class="navbar-logo"
+			src="{% static 'all_images/succulent_logo.png' %}"
+			alt="succulent logo"
+		/>
+		<a class="navbar-brand" href="/">EasyBay</a>
+	</div>
+
+	<div class="mini_nav">
+		<form class="form-inline mt-1">
+			<input
+				class="form-control w-100"
+				type="search"
+				placeholder="Search for anything"
+				aria-label="Search"
+			/>
+			<a href="#"
+				><i class="fa fa-search" aria-hidden="true"></i
+			></a>
+		</form>
+
+		<div>
+			<a href="users/sign-in/">Sign In</a>
+			<a id="shopping_cart" href=""
+				><i
+					class="fa fa-2x fa-shopping-cart"
+					aria-hidden="true"
+				></i
+			></a>
+		</div>
+
+		<div id="dialog" title="Alert"></div>
+	</div>
+</nav>
