@@ -1,6 +1,12 @@
 from django.shortcuts import render
+from user.models import User
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
-
+    if 'userid' in request.session.keys():
+        context = {
+            'user': User.objects.get(id = request.session['userid'])
+        }
+        return render(request, 'index.html', context)
+    else:
+        return render(request, 'index.html')

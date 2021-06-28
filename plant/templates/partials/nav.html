@@ -23,7 +23,15 @@
 		</form>
 
 		<div>
+			{% if 'userid' in request.session.keys %}
+			
+			<img class="nav_profile_picture" src="{{user.profile_picture.url}}" alt="profile picture">
+				Welcome, {{user.first_name}}<br>
+				<a class="small" href="users/{{user.id}}/account">My account</a>
+				<a class="small" href="users/logout/">Log out</a>
+			{% else %}	
 			<a href="users/sign-in/">Sign In</a>
+			{% endif %}
 			<a id="shopping_cart" href=""
 				><i
 					class="fa fa-2x fa-shopping-cart"

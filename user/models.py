@@ -17,10 +17,6 @@ class UserManager(models.Manager):
             errors["last_name_letters"] = "Last name should only contain letters"
         else:
             session_data["last_name"] = post_data["last_name"]
-        if len(post_data["alias"]) < 2:
-            errors["alias_length"] = "Alias should be at least 2 characters"
-        else:
-            session_data["alias"] = post_data["alias"]
         if not EMAIL_REGEX.match(post_data["email"]):
             errors["invalid_email"] = "Invalid email address!"
         elif post_data["email"] in emails_list:
@@ -46,7 +42,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=100)
-    avatar = models.FileField(upload_to="avatars", default='avatars/default_avatar.jpg')
+    profile_picture = models.FileField(upload_to="profile_pictures", default='profile_pictures/default.jpg')
     # orders = models.ForeignKey(Order, related_name = "users")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
