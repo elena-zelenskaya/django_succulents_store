@@ -23,13 +23,9 @@
 		</form>
 
 		<div>
-			{% if 'userid' in request.session.keys %}
-			
-			<img class="nav_profile_picture" src="{{user.profile_picture.url}}" alt="profile picture">
-				Welcome, {{user.first_name}}<br>
-				<a class="small" href="users/{{user.id}}/account">My account</a>
-				<a class="small" href="users/logout/">Log out</a>
-			{% else %}	
+			{% if 'userid' not in request.session.keys %}
+		
+				
 			<a href="users/sign-in/">Sign In</a>
 			{% endif %}
 			<a id="shopping_cart" href=""
@@ -43,3 +39,12 @@
 		<div id="dialog" title="Alert"></div>
 	</div>
 </nav>
+{% if 'userid' in request.session.keys %}
+<div class="user_info text-right">
+		
+	<img class="nav_profile_picture" src="{{user.profile_picture.url}}" alt="profile picture">
+	<span>Welcome, {{user.first_name}}</span>
+	<a class="small" href="users/{{user.id}}/account">My account</a>
+	<a class="small" href="users/logout/">Log out</a>
+</div>
+{% endif %}

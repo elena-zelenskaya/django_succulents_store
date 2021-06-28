@@ -14,6 +14,7 @@
 </head>
 <body>
 	<div class="container">
+		<div class="text-center">{% include 'partials/logo.html' %}</div>
 		<div class="row justify-content-end"><a class="breadcrumbs" href="/">Main Page</a>
 		<a class="breadcrumbs" href="/users/logout/">Logout</a></div>
 		<h3>User Profile</h3>
@@ -21,11 +22,11 @@
 			<img class="page_profile_picture" src="{{user.profile_picture.url}}" alt="profile picture">
 			<p><span class="bold">Name:</span> {{user.full_name}}</p>
 			<p><span class="bold">Email:</span> {{user.email}}</p>
-			<p><span class="bold">Email:</span> {{user.email}}</p>
 		</div>
 		<div class="delete">
 			<p><span class="bold">Edit Information</span></p>
 			<p><span class="bold">Change Password</span> </p>
+			<p><span class="bold">Upload New Profile Picture</span> </p>
 			<p><span class="bold">Delete Account</span> </p>
 			
 		</div>

@@ -22,7 +22,7 @@ def register_user(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value, extra_tags='register')
-            return redirect('/..')
+            return redirect('../')
         else:
             first_name = request.POST["first_name"]
             last_name = request.POST["last_name"]
@@ -45,7 +45,7 @@ def login_user(request):
         password = request.POST["password_login"]
         if not User.objects.authenticate(email, password):
             messages.error(request, "Email and Password do not match", extra_tags='login')
-            return redirect("/..")
+            return redirect("../")
         else:
             user = User.objects.get(email=email)
             request.session["userid"] = user.id
