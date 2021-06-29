@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home),
-    # path('create-idea/', views.create_idea),
+    path('<int:plant_id>/', views.view_plant),
     # path('delete-idea/<int:idea_id>/', views.delete_idea),
     # path("<int:idea_id>/", views.view_idea),
     # path("likes/<int:idea_id>/", views.create_like),

@@ -336,11 +336,11 @@ main div p {
 	background-color: #fff;
 }
 
-form .form_button {
+form .form_button, p .form_button {
 	font-size:18px;
 	font-weight:600;
-	background-color: #00d1b2;
-	border-color: #00d1b2;
+	background-color: #f46036;
+	border-color: #f46036;
 	border-radius: 0;
 	
 }

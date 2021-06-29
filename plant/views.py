@@ -10,3 +10,6 @@ def home(request):
         return render(request, 'index.html', context)
     else:
         return render(request, 'index.html')
+
+def view_plant(request, plant_id):
+    pass

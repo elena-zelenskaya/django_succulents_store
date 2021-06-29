@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .models import User
 import bcrypt
@@ -54,10 +54,31 @@ def login_user(request):
     return redirect("/")
 
 def view_user(request, user_id): 
+    if 'userid' not in request.session.keys():
+        return HttpResponse("<h1>This account was deleted</h1><p><a href='/'>Main page</a></p>")
     context = {
 		"user": User.objects.get(id = user_id)
 	}
-    return render(request, 'user_info.html', context)
+    if request.session['userid'] == user_id:
+        return render(request, 'user_info.html', context)
+    return HttpResponse("<h1>Access denied</h1>")
+
+def upload_new_profile_picture(request, user_id):
+    user = User.objects.get(id = user_id)
+    if "new_profile_picture" not in request.FILES:
+        messages.error(request, "No File Chosen", extra_tags='no_file')
+        return redirect("../")
+    profile_picture = request.FILES["new_profile_picture"]
+    user.profile_picture = profile_picture
+    user.save()
+    return redirect("../")
+
+def delete_user(request, user_id):
+    user_to_delete = User.objects.get(id = user_id)
+    if request.session['userid'] == user_id:
+        user_to_delete.delete()
+        request.session.flush()
+        return redirect("/")
 
 def logout_user(request):
     request.session.flush()

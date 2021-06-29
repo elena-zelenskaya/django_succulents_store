@@ -23,11 +23,46 @@
 			<p><span class="bold">Name:</span> {{user.full_name}}</p>
 			<p><span class="bold">Email:</span> {{user.email}}</p>
 		</div>
+		
 		<div class="delete">
 			<p><span class="bold">Edit Information</span></p>
 			<p><span class="bold">Change Password</span> </p>
-			<p><span class="bold">Upload New Profile Picture</span> </p>
-			<p><span class="bold">Delete Account</span> </p>
+			
+			{% if messages %} {% for message in messages %} 
+							{%if "no_file" in message.tags %}
+							<ul class="messages">
+								<li class="{{ message.tags }}">
+									{{ message }}
+								</li>
+							</ul>
+							{% endif %} {% endfor %} {% endif %}
+			<form action="upload/" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+					
+					
+					<div class="form-group row">
+						<label for="new_profile_picture"><span class="bold">Upload New Profile Picture:</span></label> 
+							<input
+								id="new_profile_picture"
+								name="new_profile_picture"
+								type="file"
+							/>
+						<button
+								type="submit"
+								class="btn btn-primary form_button"
+							>
+								Upload
+							</button>
+					</div>
+					
+
+
+			</form>
+			<p><span class="bold">Delete Account:</span> <a href="delete/"
+				class="btn btn-primary form_button"
+			>
+				Delete
+			</a></p>
 			
 		</div>
 	</div>
