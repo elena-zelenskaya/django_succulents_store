@@ -26,7 +26,7 @@
 			{% if 'userid' not in request.session.keys %}
 		
 				
-			<a href="users/sign-in/">Sign In</a>
+			<a href="/users/sign-in/">Sign In</a>
 			{% endif %}
 			<a id="shopping_cart" href=""
 				><i
@@ -40,11 +40,11 @@
 	</div>
 </nav>
 {% if 'userid' in request.session.keys %}
-<div class="user_info text-right">
+<div class="user_info text-right mb-3">
 		
 	<img class="nav_profile_picture" src="{{user.profile_picture.url}}" alt="profile picture">
 	<span>Welcome, {{user.first_name}}</span>
-	<a class="small" href="users/{{user.id}}/account">My account</a>
-	<a class="small" href="users/logout/">Log out</a>
+	<a class="small" href="/users/{{user.id}}/account">My account</a>
+	<a class="small" href="/users/logout/">Log out</a>
 </div>
 {% endif %}

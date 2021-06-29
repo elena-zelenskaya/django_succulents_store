@@ -10,15 +10,23 @@ def home(request):
             'user': User.objects.get(id = request.session['userid']),
             'succulents': Plant.objects.all()[:6]
         }
-        return render(request, 'index.html', context)
     else:
         context = {
             'succulents': Plant.objects.all()[:6]
         }
-        return render(request, 'index.html', context)
+    return render(request, 'index.html', context)
 
 def view_plant(request, plant_id):
-    pass
+    if 'userid' in request.session.keys():
+        context = {
+            "plant": Plant.objects.get(id = plant_id),
+            "user": User.objects.get(id=request.session['userid'])
+        }
+    else:
+        context = {
+            "plant": Plant.objects.get(id = plant_id),
+        }
+    return render(request, "plant_page.html", context)
 
 def upload_plant(request):
     if request.method == "POST":

@@ -44,7 +44,30 @@
 		<script src="{% static 'all_js/scripts.js' %}"></script>
 	</head>
 
-	<body>
+	<body class="color_body">
 		<div class="container">
+			<div class="text-center">{% include 'partials/nav.html' %}</div>
+			<div class="row">
+
+				<div class="plant_card_picture col col-md-3 offset-md-2"><img class="plant_page_picture" src="{{plant.picture.url}}" alt="{{plant.name}}"></div>
+				<div class="plant_card_info col col-md-5">
+					<h1>{{plant.name}}</h1>
+					<p>{{plant.description}}</p>
+					<p class="price">${{plant.price}}</p>
+					<form method="POST" action="add-item/" class="form-inline">
+						{% csrf_token %}
+						<div class="form-group row">
+						<label for="quantity" class="col-form-label">Quantity:</label>
+					<input id="quantity" class="form-control" type="number" value="0" min="0" name="quantity">
+					
+					<button type="submit" class="btn form_button">Add to Cart</button>
+				</div>
+				</form>
+					
+				</div>
+
+				
 			</div>
-	</body></html>
+		</div>
+	</body>
+</html>
