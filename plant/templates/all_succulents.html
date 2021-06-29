@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Succulents List</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		/>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'all_styles/styles.css' %}" />
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="text-center">{% include 'partials/logo.html' %}</div>
+		<div class="row justify-content-end mb-3"><a class="breadcrumbs" href="/">Main Page</a>
+		<a class="breadcrumbs" href="../plant-form/">Upload more plants</a></div>
+		<h1>In Stock</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Description</th>
+						<th scope="col">Picture</th>
+						<th scope="col">Price, $</th>
+						<th scope="col">Quantity, pcs</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for succulent in succulents %}
+					<tr>
+						<td scope="col">{{succulent.id}}</td>
+						<td scope="col">{{succulent.name}}</td>
+						<td scope="col">{{succulent.description}}</td>
+						<td scope="col"><img src="{{succulent.picture.url}}" alt="{{succulent.name}} image"></td>
+						<td scope="col">{{succulent.price}}</td>
+						<td scope="col">{{succulent.quantity}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

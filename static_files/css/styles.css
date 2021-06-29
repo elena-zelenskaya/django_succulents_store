@@ -366,3 +366,14 @@ form .form_button:hover {
 	font-weight: 600;
 	font-size: 20px;
 }
+
+table img {
+	width:90px;
+	height:90px;
+	object-fit: cover;
+}
+
+table.table thead th {
+	vertical-align: middle;
+}
+
