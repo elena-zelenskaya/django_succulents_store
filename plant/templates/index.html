@@ -133,7 +133,14 @@
 			</div>
 			<main>
 				<div class="row mt-3 mx-0 pb-0">
-				<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+					{% for succulent in succulents %}
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="succulents/{{succulent.id}}/">
+							<img src="{{succulent.picture.url}}" alt="succulent.name" />
+							<p>{{succulent.name}}</p>
+						</a>
+					</div>
+				<!-- <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
 						<a href="#">
 							{% load static %}
 							<img src="{% static 'all_images/aeonium.jpg' %}" alt="Aeonium" />
@@ -174,7 +181,8 @@
 							<img src="{% static 'all_images/sempervivum.jpg' %}" alt="Sempervivum" />
 							<p>Sempervivum</p>
 						</a>
-					</div>			
+					</div> -->
+					{% endfor %}			
 				</div>
 			</main>
 

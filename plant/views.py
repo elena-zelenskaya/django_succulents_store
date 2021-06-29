@@ -7,11 +7,15 @@ from .models import Plant
 def home(request):
     if 'userid' in request.session.keys():
         context = {
-            'user': User.objects.get(id = request.session['userid'])
+            'user': User.objects.get(id = request.session['userid']),
+            'succulents': Plant.objects.all()[:6]
         }
         return render(request, 'index.html', context)
     else:
-        return render(request, 'index.html')
+        context = {
+            'succulents': Plant.objects.all()[:6]
+        }
+        return render(request, 'index.html', context)
 
 def view_plant(request, plant_id):
     pass
