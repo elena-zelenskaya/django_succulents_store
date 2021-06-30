@@ -144,7 +144,7 @@ main .row {
 	padding: 16px 0;
 }
 
-main div p {
+p.succulent_name {
 	text-align: center;
 	font-size: 1.2rem;
 	font-weight: 600;

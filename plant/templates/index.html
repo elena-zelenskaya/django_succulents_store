@@ -66,7 +66,13 @@
 					<ul
 						class="navbar-nav mr-auto justify-content-between w-100"
 					>
-						<li class="nav-item">
+					{% for succulent in ordered_succulents %}
+					<li class="nav-item">
+						<a class="nav-link" href="/succulents/{{succulent.id}}/">{{succulent.name}}</a>
+					</li>
+					{% endfor %}
+
+						<!-- <li class="nav-item">
 							<a class="nav-link" href="#">Aeonium</a>
 						</li>
 						<li class="nav-item">
@@ -84,6 +90,7 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">Aristaloe</a>
 						</li>
+						-->
 						<li class="nav-item">
 							<a class="nav-link" href="#">More...</a>
 						</li>
@@ -125,7 +132,7 @@
 					>
 					{% load static %}
 						<img src="{% static 'all_images/soothing_aloe.jpg' %}" alt="Aloe" />
-						<a class="custom_btn" role="button" href="#"
+						<a class="custom_btn" role="button" href="/succulents/10/"
 							>Soothing Aloe&nbsp;&rarr;</a
 						>
 					</div>
@@ -136,8 +143,8 @@
 					{% for succulent in succulents %}
 					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
 						<a href="succulents/{{succulent.id}}/">
-							<img src="{{succulent.picture.url}}" alt="succulent.name" />
-							<p>{{succulent.name}}</p>
+							<img src="{{succulent.picture.url}}" alt="{{succulent.name}}" />
+							<p class="succulent_name">{{succulent.name}}</p>
 						</a>
 					</div>
 				<!-- <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">

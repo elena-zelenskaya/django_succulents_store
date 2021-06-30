@@ -23,11 +23,15 @@
 		</form>
 
 		<div>
-			{% if 'userid' not in request.session.keys %}
-		
-				
+			{% if user.id == 1 %}				
+			<a href="/succulents/plant-form/">Upload plants</a>
+			<a href="/succulents/list/">All plants</a>
+			{% endif %}
+
+			{% if 'userid' not in request.session.keys %}				
 			<a href="/users/sign-in/">Sign In</a>
 			{% endif %}
+
 			<a id="shopping_cart" href=""
 				><i
 					class="fa fa-2x fa-shopping-cart"

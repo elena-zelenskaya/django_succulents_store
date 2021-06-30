@@ -8,11 +8,13 @@ def home(request):
     if 'userid' in request.session.keys():
         context = {
             'user': User.objects.get(id = request.session['userid']),
-            'succulents': Plant.objects.all()[:6]
+            'succulents': Plant.objects.all()[:6],
+            'ordered_succulents': Plant.objects.order_by("name")[:6]
         }
     else:
         context = {
-            'succulents': Plant.objects.all()[:6]
+            'succulents': Plant.objects.all()[:6],
+            'ordered_succulents': Plant.objects.order_by("name")[:6]
         }
     return render(request, 'index.html', context)
 
@@ -20,11 +22,13 @@ def view_plant(request, plant_id):
     if 'userid' in request.session.keys():
         context = {
             "plant": Plant.objects.get(id = plant_id),
+            "all_succulents": Plant.objects.exclude(id = plant_id),
             "user": User.objects.get(id=request.session['userid'])
         }
     else:
         context = {
             "plant": Plant.objects.get(id = plant_id),
+            "all_succulents": Plant.objects.exclude(id = plant_id),
         }
     return render(request, "plant_page.html", context)
 
@@ -45,7 +49,6 @@ def upload_plant(request):
                 picture = request.FILES["plant_picture"]
                 new_succulent.picture = picture
                 new_succulent.save()
-            request.session.flush()
             return redirect("../../list/")
     request.session.flush()
     return redirect("/")

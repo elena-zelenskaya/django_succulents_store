@@ -1,0 +1,12 @@
+<div class="row m-3"><h3>You may also like</h3></div>
+<div class="row m-3">
+	
+	{% for succulent in all_succulents %}
+					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+						<a href="/succulents/{{succulent.id}}/">
+							<img src="{{succulent.picture.url}}" alt="{{succulent.name}}" />
+							<p class="succulent_name">{{succulent.name}}</p>
+						</a>
+					</div>
+	{% endfor %}
+</div>
