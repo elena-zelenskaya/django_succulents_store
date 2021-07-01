@@ -6,33 +6,33 @@ $(function () {
 	}
 	$(".succulents").hover(changeImage, changeImage);
 	// $("#cookie_modal").modal("show");
-	$("#dialog")
-		.dialog({
-			resizable: false,
-			dialogClass: "no-close",
-			modal: true,
-			minWidth: "300",
-			autoOpen: false,
-			position: { my: "center top", at: "center top", of: window },
-			buttons: [
-				{
-					text: "Ok",
-					click: function () {
-						$(this).dialog("close");
-					},
-				},
-			],
-			create: function (e, ui) {
-				$(".no-close button:last").addClass(
-					"ui-button ui-corner-all ui-widget"
-				);
-			},
-		})
-		.html(`<p>Your Cart is empty!</p>`);
-	$("#shopping_cart").click(function (e) {
-		e.preventDefault();
-		$("#dialog").dialog("open");
-	});
+	// $("#dialog")
+	// 	.dialog({
+	// 		resizable: false,
+	// 		dialogClass: "no-close",
+	// 		modal: true,
+	// 		minWidth: "300",
+	// 		autoOpen: false,
+	// 		position: { my: "center top", at: "center top", of: window },
+	// 		buttons: [
+	// 			{
+	// 				text: "Ok",
+	// 				click: function () {
+	// 					$(this).dialog("close");
+	// 				},
+	// 			},
+	// 		],
+	// 		create: function (e, ui) {
+	// 			$(".no-close button:last").addClass(
+	// 				"ui-button ui-corner-all ui-widget"
+	// 			);
+	// 		},
+	// 	})
+	// 	.html(`<p>Your Cart is empty!</p>`);
+	// $("#shopping_cart").click(function (e) {
+	// 	e.preventDefault();
+	// 	$("#dialog").dialog("open");
+	// });
 
 	// $.get(
 	// 	"https://fakestoreapi.herokuapp.com/products/",

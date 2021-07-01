@@ -44,32 +44,36 @@
 		<script src="{% static 'all_js/scripts.js' %}"></script>
 	</head>
 
-	<body class="color_body">
+	<body>
 		<div class="container">
-			<div class="text-center">{% include 'partials/nav.html' %}</div>
-			<div class="row">
-
-				<div class="plant_card_picture col col-md-3 offset-md-2"><img class="plant_page_picture" src="{{plant.picture.url}}" alt="{{plant.name}}"></div>
-				<div class="plant_card_info col col-md-5">
-					<h1>{{plant.name}}</h1>
-					<p>{{plant.description}}</p>
-					<p class="price">${{plant.price}}</p>
-					<form method="POST" action="/succulents/add-to-cart/" class="form-inline">
-						{% csrf_token %}
-						<div class="form-group row">
-						<label for="quantity" class="col-form-label">Quantity:</label>
-					<input id="quantity" class="form-control" type="number" value="1" min="0" name="quantity">
-					<input type="hidden" value="{{plant.id}}" name="plant_id">
-					<button type="submit" class="btn form_button">Add to Cart</button>
-				</div>
-				</form>
-					
-				</div>
-
-				
-			</div>
-
-			{% include 'partials/you_may_also_like.html' %}
+			{% include 'partials/nav.html' %}
+			{% if not 'added_plant_id' in request.session.keys %}
+			<div class="row"><h1>Your cart is empty!</h1></div>
+			{% else %}
+			<div class="row"><h1>My Cart</h1></div>
+			<div class="row"><table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Price, $</th>
+						<th scope="col">Amount, pcs</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for plant in plants_in_cart %}
+					<tr>
+						<td scope="col">{{plant.plant_name}}</td>
+						<td scope="col">{{plant.plant_price}}</td>
+						<td scope="col">{{plant.plant_amount}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>{% for plant in plants_in_cart %}
+		<div class="row"><h2>Your total is: ${{plant.plant_price}} * {{plant.plant_amount}} = $</h2></div>
+		{% endfor %}
+			{% endif %}
 		</div>
-	</body>
+	
+</body>
 </html>

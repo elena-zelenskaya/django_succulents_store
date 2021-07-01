@@ -61,3 +61,25 @@ def all_uploaded_succulents(request):
 		"succulents": Plant.objects.all()
 	}
     return render(request, "all_succulents.html", context)
+
+def my_cart(request):
+    if 'userid' in request.session.keys():
+        context = {
+            "user": User.objects.get(id=request.session['userid']),
+            "plants_in_cart": request.session["plants_in_cart"],
+        }
+    else:
+        context = {
+            "plants_in_cart": request.session["plants_in_cart"],
+        }
+    return render(request, "my_cart.html", context)
+
+def add_to_cart(request):
+    if not 'plants_in_cart' in request.session.keys():
+        request.session["plants_in_cart"] = []
+    if request.method == "POST":
+        request.session["quantity"] = request.POST["quantity"]
+        request.session["added_plant_id"] = request.POST["plant_id"]
+        new_plant = {"plant_name": Plant.objects.get(id = request.session['added_plant_id']).name, "plant_price": Plant.objects.get(id = request.session['added_plant_id']).price, "plant_amount": request.session["quantity"]}
+        request.session["plants_in_cart"].append(new_plant)
+        return redirect("../my-cart/")
