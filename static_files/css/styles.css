@@ -410,3 +410,12 @@ table.table thead th {
 	font-size: 22px;
 	font-weight: 700;
 }
+
+.delete_button {
+	width:30px;
+	height:30px;
+	color:#fff;
+	font-weight: 800;
+	background-color: #f46036;
+	border-radius: 50%;
+}

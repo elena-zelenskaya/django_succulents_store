@@ -7,6 +7,7 @@ urlpatterns = [
     path('plant-form/plant-upload/', views.upload_plant),
     path("list/", views.all_uploaded_succulents),
     path("my-cart/", views.my_cart),
+    path("my-cart/delete-cart-item/", views.delete_cart_item),
     path("add-to-cart/", views.add_to_cart),
 ]
 
