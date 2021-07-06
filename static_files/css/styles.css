@@ -262,6 +262,7 @@ p.succulent_name {
 		flex-grow: 7;
 		justify-content: space-between;
 	}
+
 }
 
 @media only screen and (min-width: 992px) {
@@ -287,6 +288,10 @@ p.succulent_name {
 		font-size: 1.4rem;
 		font-weight: 700;
 	}
+
+	.user_info {
+		width:60%;
+	}
 }
 
 .nav_profile_picture {
@@ -297,22 +302,15 @@ p.succulent_name {
 }
 
 .page_profile_picture {
-	width: 90px;
-	height: 90px;
+	width: 120px;
+	height: 120px;
 	object-fit: cover;
 	float: left;
-	margin: 15px;
+	margin: 15px 15px 15px 0;
 }
 
-.user_info .small {
-	font-size: 12px;
-	margin: 0 10px;
-	display: inline-block;
-}
-
-.user_info span {
-	margin-right: 10px;
-	display: inline-block;
+#new_profile_picture {
+	display:block;
 }
 
 .messages {
@@ -365,7 +363,6 @@ form .form_button:hover {
 
 .bold {
 	font-weight: 600;
-	font-size: 20px;
 }
 
 table img {
@@ -418,4 +415,23 @@ table.table thead th {
 	font-weight: 800;
 	background-color: #f46036;
 	border-radius: 50%;
+}
+
+.edit {
+	display: inline-block;
+	text-decoration: underline;
+	margin-left: 15px;
+}
+
+.user_info {
+	font-size:18px;
+	margin: 0 auto;
+}
+
+.user_info .small {
+	font-size: 14px;
+}
+
+.underline {
+	text-decoration: underline;
 }
