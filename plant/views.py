@@ -63,12 +63,11 @@ def all_uploaded_succulents(request):
 
 
 def my_cart(request):
-    print(request.session["plants_in_cart"])
-    if "userid" in request.session.keys():
+    if "userid" in request.session.keys() and "plants_in_cart" in request.session.keys():
         context = {
             "user": User.objects.get(id=request.session["userid"]),
             "plants_in_cart": request.session["plants_in_cart"],
-            "total": request.session["total"],
+            "total": round(request.session["total"], 2),
         }
     else:
         context = {
@@ -90,10 +89,23 @@ def add_to_cart(request):
             "plant_price": Plant.objects.get(id=request.POST["plant_id"]).price,
             "plant_amount": request.POST["quantity"],
         }
-        print(new_plant)
         request.session["total"] += new_plant["plant_price"] * int(new_plant["plant_amount"])
         request.session["plants_in_cart"].append(new_plant)
         return redirect("../my-cart/")
+
+def checkout(request):
+    if "userid" in request.session.keys():
+        print(request.session.keys())
+        context = {
+            "user": User.objects.get(id=request.session["userid"]),
+            "plants_to_buy": request.session["plants_in_cart"],
+        }
+        return render(request, "checkout.html", context)
+    else:
+        return render(request, "error.html")
+
+def buy(request):
+    pass
 
 
 def delete_cart_item(request):

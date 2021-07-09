@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
-from .models import User
+from .models import User, Address
 import bcrypt
 
 # Create your views here.
@@ -79,6 +79,23 @@ def delete_user(request, user_id):
         user_to_delete.delete()
         request.session.flush()
         return redirect("/")
+
+def add_address(request):
+    if request.method == "POST":
+        errors = Address.objects.address_validator(request.session, request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value, extra_tags='address_error')
+            return redirect('../')
+        user = User.objects.get(id = request.session['userid'])
+        line1 = request.POST["street_address"]
+        line2 = request.POST["apt"]
+        city = request.POST["city"]
+        state = request.POST["state"]
+        zip_code = request.POST["zip"]
+        new_address = Address.objects.create(user = user, line1 = line1, line2 = line2, city = city, state = state, zip_code = zip_code)
+        request.session['user_address'] = new_address.zip_code
+        return redirect("/succulents/my-cart/checkout/")
 
 def logout_user(request):
     request.session.flush()

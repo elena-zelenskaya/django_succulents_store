@@ -36,6 +36,14 @@ class UserManager(models.Manager):
         user = users[0]
         return bcrypt.checkpw(password.encode(), user.password.encode())
 
+
+
+class AddressManager(models.Manager):
+    def address_validator(self, session_data, post_data):
+        errors={}
+        return errors
+
+
 # Create your models here.
 class User(models.Model):
     first_name = models.CharField(max_length=45)
@@ -50,5 +58,16 @@ class User(models.Model):
     def full_name(self):
         return f"{self.first_name} {self.last_name}"
     objects = UserManager()
+
+class Address(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_address")
+    state = models.CharField(max_length=20, default="")
+    zip_code = models.IntegerField(default="")
+    city = models.CharField(max_length=45, default="")
+    line1 = models.TextField(max_length=100, default="")
+    line2 = models.TextField(max_length=20, blank=True, default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = AddressManager()
 
 
