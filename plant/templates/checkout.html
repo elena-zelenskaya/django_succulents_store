@@ -131,7 +131,7 @@
 							{% endfor %}
 						</ol>
 						<p><span class="bold">Your total is:</span> ${{total}}</p>
-						<form action="/buy/" method="POST" class="text-right">
+						<form action="buy/" method="POST" class="text-right">
 							{% csrf_token %}
 						<button type="submit"
 						class="btn btn-primary form_button">Buy</button>

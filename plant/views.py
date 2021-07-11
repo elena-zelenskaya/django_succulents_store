@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from user.models import User
-from .models import Plant
+from .models import Plant, Order
 
 # Create your views here.
 def home(request):
@@ -70,6 +70,11 @@ def my_cart(request):
             "total": round(request.session["total"], 2),
         }
         return render(request, "my_cart.html", context)
+    elif "userid" in request.session.keys():
+        context = {
+            "user": User.objects.get(id=request.session["userid"]),
+        }
+        return render(request, "my_cart.html", context)
     else:
         return render(request, "my_cart.html")
 
@@ -102,7 +107,25 @@ def checkout(request):
         return render(request, "error.html")
 
 def buy(request):
-    pass
+    if "userid" not in request.session.keys():
+        return render(request, "error.html")
+    if request.method == "POST":
+        user = User.objects.get(id = request.session["userid"])
+        order_sum = round(request.session["total"], 2)
+        plants = map(lambda plant: Plant.objects.get(id = plant['plant_id']), request.session["plants_in_cart"])
+        new_order = Order.objects.create(user = user, order_sum = order_sum)
+        new_order.plants.set(list(plants))
+        del request.session['plants_in_cart']
+        return redirect("../../../success/")
+    else:
+        return render(request, "error.html")
+
+def success(request):
+    context = {
+		"user": User.objects.get(id = request.session["userid"]),
+		"current_order": User.objects.get(id = request.session["userid"]).user_orders.last()
+	}
+    return render(request, "success.html", context)
 
 
 def delete_cart_item(request):
@@ -112,5 +135,8 @@ def delete_cart_item(request):
             if plant['plant_id'] == int(plant_id):
                 request.session["plants_in_cart"].remove(plant)
                 request.session["total"] -= plant["plant_price"] * int(plant["plant_amount"])
+                if len(request.session["plants_in_cart"]) == 0:
+                    del request.session["plants_in_cart"]
+                    del request.session["total"]
                 return redirect("../")
     return redirect("/")
