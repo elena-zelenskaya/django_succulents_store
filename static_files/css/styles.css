@@ -330,9 +330,16 @@ p.succulent_name {
 .form_decoration {
 	display: block;
 	padding: 20px;
-	/* border-radius: 20px; */
 	box-shadow: 5px 5px 15px #00d1b2;
 	background-color: #fff;
+}
+
+.general_card {
+	display: block;
+	padding: 20px;
+	box-shadow: 5px 5px 15px #00d1b2;
+	background-color: #fff;
+	font-size:20px;
 }
 
 form .form_button,
@@ -389,19 +396,13 @@ table.table thead th {
 
 
 
-.plant_card_picture {
+.plant_card_picture, .plant_card_info {
 	background-color: #fff;
 	box-shadow: 15px 15px 15px #00d1b2;
 	padding:20px;
 	display: inline-block;
 }
 
-.plant_card_info {
-	background-color: #fff;
-	box-shadow: 15px 15px 15px #00d1b2;
-	padding:20px;
-	display: inline-block;
-}
 
 .price {
 	font-size: 22px;

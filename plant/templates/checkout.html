@@ -121,30 +121,22 @@
 						</fieldset>
 					</form>
 					{% else %}
-					<h2>Your order summary</h2>
-					<p>Name: {{user.full_name}}</p>
-					<!-- <p>Address: {{user.user_address}}</p>
-					<p>Address-session: {{request.session.user_address}}</p>
-					<p>
-						Address-session-street:
-						{{request.session.user_address.line1}}
-					</p>
-					<p>
-						Address-session-city:
-						{{request.session.user_address.city}}
-					</p> -->
-					<p>Your order:</p>
-					<ul>
-						{% for plant in plants_to_buy %} 
-						<li>{{plant.plant_name}} - {{plant.plant_amount}} pcs - ${{plant.plant_price}}/pc</li>
-						{% endfor %}
-					</ul>
-					<p>Your total is: ${{request.session.total}}</p>
-					<form action="/buy/" method="POST">
-						{% csrf_token %}
-					<button type="submit"
-					class="btn btn-primary form_button">Buy</button>
-					</form>
+					<div class="general_card"><h2>Your order summary</h2>
+						<p><span class="bold">Name:</span> {{user.full_name}}</p>
+						<p><span class="bold">Address:</span> {{user.user_address.line1}}, {% if user.user_address.line2 %}{{user.user_address.line2}}, {% endif %}{{user.user_address.city}}, {{user.user_address.state}} {{user.user_address.zip_code}}</p>
+						<p><span class="bold">Your order:</span></p>
+						<ol class="ml-5">
+							{% for plant in plants_to_buy %} 
+							<li>{{plant.plant_name}} &ndash; {{plant.plant_amount}} pcs &ndash; ${{plant.plant_price}}/pc</li>
+							{% endfor %}
+						</ol>
+						<p><span class="bold">Your total is:</span> ${{total}}</p>
+						<form action="/buy/" method="POST" class="text-right">
+							{% csrf_token %}
+						<button type="submit"
+						class="btn btn-primary form_button">Buy</button>
+						</form></div>
+					
 					{% endif %}
 				</div>
 			</div>

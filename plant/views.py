@@ -69,19 +69,16 @@ def my_cart(request):
             "plants_in_cart": request.session["plants_in_cart"],
             "total": round(request.session["total"], 2),
         }
+        return render(request, "my_cart.html", context)
     else:
-        context = {
-            "plants_in_cart": [],
-            "total": 0,
-        }
-    return render(request, "my_cart.html", context)
+        return render(request, "my_cart.html")
 
 
 def add_to_cart(request):
     if not "plants_in_cart" in request.session.keys():
         request.session["plants_in_cart"] = []
     if not "total" in request.session.keys():
-        request.session["total"] = 0
+        request.session["total"] = 0.0
     if request.method == "POST":
         new_plant = {
             "plant_id": int(request.POST["plant_id"]),
@@ -95,10 +92,10 @@ def add_to_cart(request):
 
 def checkout(request):
     if "userid" in request.session.keys():
-        print(request.session.keys())
         context = {
             "user": User.objects.get(id=request.session["userid"]),
             "plants_to_buy": request.session["plants_in_cart"],
+            "total": round(request.session["total"], 2),
         }
         return render(request, "checkout.html", context)
     else:
