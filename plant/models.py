@@ -37,6 +37,7 @@ class Plant(models.Model):
 
 class Order(models.Model):
     plants = models.ManyToManyField(Plant, related_name = "orders")
+    amounts = models.CharField(max_length=200, default='')
     order_sum = models.FloatField(default=0.0)
     user = models.ForeignKey(User, related_name="user_orders", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import User, Address
 import bcrypt
@@ -55,13 +55,23 @@ def login_user(request):
 
 def view_user(request, user_id): 
     if 'userid' not in request.session.keys():
-        return HttpResponse("<h1>This account was deleted</h1><p><a href='/'>Main page</a></p>")
+        return render(request, "error.html")
+    list_of_orders = []
+    for order in User.objects.get(id = user_id).user_orders.all():
+        plants = order.plants
+        amounts = order.amounts.split(',')
+        created_at = order.created_at
+        total = order.order_sum
+        plant_dict = dict(zip(amounts, plants.all()))
+        order_info = [created_at, total, plant_dict]
+        list_of_orders.append(order_info)
     context = {
-		"user": User.objects.get(id = user_id)
+		"user": User.objects.get(id = user_id),
+		"orders_list": list_of_orders,
 	}
     if request.session['userid'] == user_id:
         return render(request, 'user_info.html', context)
-    return HttpResponse("<h1>Access denied</h1>")
+    return render(request, "error.html")
 
 def upload_new_profile_picture(request, user_id):
     user = User.objects.get(id = user_id)
@@ -94,8 +104,8 @@ def add_address(request):
         state = request.POST["state"]
         zip_code = request.POST["zip"]
         new_address = Address.objects.create(user = user, line1 = line1, line2 = line2, city = city, state = state, zip_code = zip_code)
-        request.session['user_address'] = new_address.zip_code
         return redirect("/succulents/my-cart/checkout/")
+    return redirect('/')
 
 def logout_user(request):
     request.session.flush()

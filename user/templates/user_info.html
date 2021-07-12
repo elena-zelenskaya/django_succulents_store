@@ -69,10 +69,16 @@
 				<div class="row justify-content-center">
 					<div class="col offset-md-3"><p><span class="bold">Name:</span> <span class="">{{user.full_name}}</span> <span class="edit small"><a href="edit-name/">Edit</a></span></p>
 							<p><span class="bold">Email:</span> <span class="">{{user.email}}</span> <span class="edit small"><a href="edit-email/">Edit</a></span></p>
-							<p><span class="bold">Your orders:</span> 
-								{% for order in user.user_orders}}
-									{{user.user_orders}}
-								{% endfor %}</p>
+							<p><span class="bold">Your orders:</span></p>
+								<ol class="ml-5">
+								{% for order in orders_list %}
+									<li>{{order.0}}: 
+									
+									<ul class="ml-5">{% for amount, plant in order.2.items %} 
+									<li>{{plant.name}} &ndash; ${{plant.price}} &ndash; {{amount}} pcs</li> 
+									{% endfor %}</ul>
+								Total: ${{order.1}}</li>
+								{% endfor %}</ol>
 							<p><a class="bold underline" href="change-password/">Change Password</span></p>
 
 							

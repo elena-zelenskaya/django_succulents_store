@@ -113,17 +113,24 @@ def buy(request):
         user = User.objects.get(id = request.session["userid"])
         order_sum = round(request.session["total"], 2)
         plants = map(lambda plant: Plant.objects.get(id = plant['plant_id']), request.session["plants_in_cart"])
-        new_order = Order.objects.create(user = user, order_sum = order_sum)
+        str_amount = ''
+        for plant in request.session["plants_in_cart"]:
+            str_amount += plant['plant_amount'] + ','
+        new_order = Order.objects.create(user = user, order_sum = order_sum, amounts = str_amount[:-1])
         new_order.plants.set(list(plants))
         del request.session['plants_in_cart']
+        del request.session['total']
         return redirect("../../../success/")
     else:
         return render(request, "error.html")
 
 def success(request):
+    plants = User.objects.get(id = request.session["userid"]).user_orders.last().plants
+    amounts = User.objects.get(id = request.session["userid"]).user_orders.last().amounts.split(',')
     context = {
 		"user": User.objects.get(id = request.session["userid"]),
-		"current_order": User.objects.get(id = request.session["userid"]).user_orders.last()
+		"current_order": User.objects.get(id = request.session["userid"]).user_orders.last(),
+		"plant_dict": dict(zip(amounts, plants.all())),
 	}
     return render(request, "success.html", context)
 
