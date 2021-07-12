@@ -58,7 +58,7 @@ def view_user(request, user_id):
         return render(request, "error.html")
     list_of_orders = []
     for order in User.objects.get(id = user_id).user_orders.all():
-        plants = order.plants
+        plants = order.plants.order_by("name")
         amounts = order.amounts.split(',')
         created_at = order.created_at
         total = order.order_sum

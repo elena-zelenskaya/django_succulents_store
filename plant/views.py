@@ -66,7 +66,7 @@ def my_cart(request):
     if "userid" in request.session.keys() and "plants_in_cart" in request.session.keys():
         context = {
             "user": User.objects.get(id=request.session["userid"]),
-            "plants_in_cart": request.session["plants_in_cart"],
+            "plants_in_cart": sorted(request.session["plants_in_cart"], key = lambda x: x['plant_name']),
             "total": round(request.session["total"], 2),
         }
         return render(request, "my_cart.html", context)
@@ -99,7 +99,7 @@ def checkout(request):
     if "userid" in request.session.keys():
         context = {
             "user": User.objects.get(id=request.session["userid"]),
-            "plants_to_buy": request.session["plants_in_cart"],
+            "plants_to_buy": sorted(request.session["plants_in_cart"], key = lambda x: x['plant_name']),
             "total": round(request.session["total"], 2),
         }
         return render(request, "checkout.html", context)
@@ -112,9 +112,9 @@ def buy(request):
     if request.method == "POST":
         user = User.objects.get(id = request.session["userid"])
         order_sum = round(request.session["total"], 2)
-        plants = map(lambda plant: Plant.objects.get(id = plant['plant_id']), request.session["plants_in_cart"])
+        plants = map(lambda plant: Plant.objects.get(id = plant['plant_id']), sorted(request.session["plants_in_cart"], key = lambda x: x['plant_name']))
         str_amount = ''
-        for plant in request.session["plants_in_cart"]:
+        for plant in sorted(request.session["plants_in_cart"], key = lambda x: x['plant_name']):
             str_amount += plant['plant_amount'] + ','
         new_order = Order.objects.create(user = user, order_sum = order_sum, amounts = str_amount[:-1])
         new_order.plants.set(list(plants))
@@ -125,7 +125,7 @@ def buy(request):
         return render(request, "error.html")
 
 def success(request):
-    plants = User.objects.get(id = request.session["userid"]).user_orders.last().plants
+    plants = User.objects.get(id = request.session["userid"]).user_orders.last().plants.order_by("name")
     amounts = User.objects.get(id = request.session["userid"]).user_orders.last().amounts.split(',')
     context = {
 		"user": User.objects.get(id = request.session["userid"]),
