@@ -41,6 +41,24 @@ class UserManager(models.Manager):
 class AddressManager(models.Manager):
     def address_validator(self, session_data, post_data):
         errors={}
+        if len(post_data["line1"]) == 0:
+            errors["missing_field"] = "This field is required"
+        else:
+            session_data["street_address"] = post_data["street_address"]
+        if len(post_data["state"]) == 0:
+            errors["missing_field"] = "This field is required"
+        else:
+            session_data["state"] = post_data["state"]
+        if len(post_data["city"]) == 0:
+            errors["missing_field"] = "This field is required"
+        else:
+            session_data["city"] = post_data["city"]
+        if len(post_data["zip"]) != 5:
+            errors["zip_length"] = "Zip code should contain five numbers"
+        elif not post_data["zip"].isnumeric():
+            errors["zip_letters"] = "Zip code should only contain numbers"
+        else:
+            session_data["zip"] = post_data["zip"]
         return errors
 
 
