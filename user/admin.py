@@ -11,3 +11,11 @@ class UserAdmin(admin.ModelAdmin):
 class AddressAdmin(admin.ModelAdmin):
     list_display = ('id', 'line1', 'line2', 'city', 'state', 'zip_code', 'user')
 
+@admin.register(Plant)
+class PlantAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'price', 'quantity', 'picture')
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'amounts', 'order_sum')
+
