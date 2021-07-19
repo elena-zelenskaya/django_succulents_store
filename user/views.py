@@ -54,7 +54,9 @@ def login_user(request):
     return redirect("/")
 
 def view_user(request, user_id): 
-    if 'userid' not in request.session.keys():
+    if not User.objects.filter(id = user_id):
+        return render(request, "error.html")
+    elif 'userid' not in request.session.keys():
         return render(request, "error.html")
     list_of_orders = []
     for order in User.objects.get(id = user_id).user_orders.all():
