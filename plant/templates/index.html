@@ -5,6 +5,20 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>EasyBay Succulents</title>
+		<meta name="description" content="Succulent Web Store App" />
+		<meta name="title" property="og:title" content="Easy Bay" />
+		<meta property="og:type" content="Website" />
+		<meta
+			name="image"
+			property="og:image"
+			content="https://drive.google.com/file/d/1QeUucdO8VmUWmVtjpbdkn9wx4EE0RVSR/view?usp=sharing"
+		/>
+		<meta
+			name="description"
+			property="og:description"
+			content="Succulent Web Store App"
+		/>
+		<meta name="author" content="Elena Zelenskaya" />
 
 		<link
 			rel="stylesheet"
@@ -66,11 +80,15 @@
 					<ul
 						class="navbar-nav mr-auto justify-content-between w-100"
 					>
-					{% for succulent in ordered_succulents %}
-					<li class="nav-item">
-						<a class="nav-link" href="/succulents/{{succulent.id}}/">{{succulent.name}}</a>
-					</li>
-					{% endfor %}
+						{% for succulent in ordered_succulents %}
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								href="/succulents/{{succulent.id}}/"
+								>{{succulent.name}}</a
+							>
+						</li>
+						{% endfor %}
 
 						<!-- <li class="nav-item">
 							<a class="nav-link" href="#">Aeonium</a>
@@ -106,7 +124,15 @@
 					<div class="col-md-8 col-sm-7">
 						<div class="row h-100">
 							<div
-								class="col-md-4 col-sm-6 p-3 mt-0 left_plank d-flex flex-column justify-content-center"
+								class="
+									col-md-4 col-sm-6
+									p-3
+									mt-0
+									left_plank
+									d-flex
+									flex-column
+									justify-content-center
+								"
 							>
 								<h2 class="display-4">
 									Discover surprising succulents one pot or
@@ -128,11 +154,24 @@
 						</div>
 					</div>
 					<div
-						class="col-md-4 col-sm-5 d-flex flex-column justify-content-between right_plank px-0"
+						class="
+							col-md-4 col-sm-5
+							d-flex
+							flex-column
+							justify-content-between
+							right_plank
+							px-0
+						"
 					>
-					{% load static %}
-						<img src="{% static 'all_images/soothing_aloe.jpg' %}" alt="Aloe" />
-						<a class="custom_btn" role="button" href="/succulents/10/"
+						{% load static %}
+						<img
+							src="{% static 'all_images/soothing_aloe.jpg' %}"
+							alt="Aloe"
+						/>
+						<a
+							class="custom_btn"
+							role="button"
+							href="/succulents/10/"
 							>Soothing Aloe&nbsp;&rarr;</a
 						>
 					</div>
@@ -143,11 +182,14 @@
 					{% for succulent in succulents %}
 					<div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
 						<a href="succulents/{{succulent.id}}/">
-							<img src="{{succulent.picture.url}}" alt="{{succulent.name}}" />
+							<img
+								src="{{succulent.picture.url}}"
+								alt="{{succulent.name}}"
+							/>
 							<p class="succulent_name">{{succulent.name}}</p>
 						</a>
 					</div>
-				<!-- <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
+					<!-- <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
 						<a href="#">
 							{% load static %}
 							<img src="{% static 'all_images/aeonium.jpg' %}" alt="Aeonium" />
@@ -189,7 +231,7 @@
 							<p>Sempervivum</p>
 						</a>
 					</div> -->
-					{% endfor %}			
+					{% endfor %}
 				</div>
 			</main>
 

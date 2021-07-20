@@ -13,12 +13,15 @@
 		<link rel="stylesheet" href="{% static 'all_styles/styles.css' %}" />
 	</head>
 	<body>
-
 		<div class="container">
 			<div class="text-center">{% include 'partials/logo.html' %}</div>
-		<div class="row justify-content-end mb-3"><a class="breadcrumbs" href="/">Main Page</a>
-		<a class="breadcrumbs" href="../plant-form/">Upload more plants</a></div>
-		<h1>In Stock</h1>
+			<div class="row justify-content-end mb-3">
+				<a class="breadcrumbs" href="/">Main Page</a>
+				<a class="breadcrumbs" href="../plant-form/"
+					>Upload more plants</a
+				>
+			</div>
+			<h1>In Stock</h1>
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -36,7 +39,12 @@
 						<td scope="col">{{succulent.id}}</td>
 						<td scope="col">{{succulent.name}}</td>
 						<td scope="col">{{succulent.description}}</td>
-						<td scope="col"><img src="{{succulent.picture.url}}" alt="{{succulent.name}} image"></td>
+						<td scope="col">
+							<img
+								src="{{succulent.picture.url}}"
+								alt="{{succulent.name}} image"
+							/>
+						</td>
 						<td scope="col">{{succulent.price}}</td>
 						<td scope="col">{{succulent.quantity}}</td>
 					</tr>
